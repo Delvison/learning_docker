@@ -1,0 +1,5 @@
+
+> node-api@ start /mynodeapp
+> node server.js
+
+Magic happens on port 3000
