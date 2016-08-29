@@ -1,6 +1,13 @@
 mynodeapp:
-  build: ./mynodeapp
-  ports:
-    - "8080:3000"
-  volumes:
-    - ./mynodeapp:/mynodeapp
+    build: ./mynodeapp
+    ports:
+        - "8080:3000"
+    volumes:
+        - ./mynodeapp:/mynodeapp
+
+webapp:
+    build: ./webapp
+    ports:
+        - "1234:3000"
+    volumes:
+        - ./webapp:/webapp
