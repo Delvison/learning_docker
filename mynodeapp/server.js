@@ -1,7 +1,7 @@
 // server.js
+var bodyParser = require('body-parser');
 var express = require('express');
 var app = express();
-var bodyParser = require('body-parser');
 
 // setup bodyparser
 app.use(bodyParser.urlencoded({
@@ -13,7 +13,9 @@ app.use(bodyParser.json());
 var mongoose = require('mongoose');
 var fs = require("fs");
 var db = fs.readFileSync('./database.conf').toString().split('\n')[0];
-mongoose.connect(db); // connect to our database
+mongoose.connect(db, function(err) {
+  if (err) throw err;
+}); // connect to our database
 
 // set up port
 var port = process.env.PORT || 3000;
