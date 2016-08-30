@@ -3,7 +3,7 @@ require "net/http"
 
 class OrdersController < ApplicationController
   def index
-      url = File.read("/webapp/config/api.conf")[0]
+      url = File.read("/webapp/config/api.conf",&:readline).strip
       # url = 'http://127.0.0.1:8080/api/orders'
       api_response = HTTParty.get(url)
       @all_orders = api_response.parsed_response
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 
   def create
       @order = params[:order]
-      url = File.read("/webapp/config/api.conf")[0]
+      url = File.read("/webapp/config/api.conf",&:readline).strip
       # url = 'http://127.0.0.1:8080/api/orders'
       api_response = HTTParty.post(url,
         :body => @order)
