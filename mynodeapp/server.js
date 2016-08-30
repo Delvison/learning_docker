@@ -8,8 +8,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // set up connection to mongodb
-// var mongoose   = require('mongoose');
-// mongoose.connect('mongodb://node:node@novus.modulusmongo.net:27017/Iganiq8o'); // connect to our database
+var mongoose   = require('mongoose');
+// mongoose.connect('mongodb://node:node@172.31.34.235:27017/Iganiq8o'); // connect to our database
 
 // set up port
 var port = process.env.PORT || 3000;
