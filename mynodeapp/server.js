@@ -41,6 +41,10 @@ router.route('/orders')
       var order = new Order();
       order.customer = req.body.customer;
       order.order = req.body.order;
+      order.phone =req.body.phone;
+      order.total =req.body.total;
+      order.address =req.body.address;
+      order.isFulfilled =req.body.isFulfilled;
       console.log("   RECEIVING ORDER > "+order.customer+" : "+order.order);
       order.save(function(err) {
         if (err)

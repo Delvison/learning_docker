@@ -5,4 +5,9 @@ WORKDIR /webapp
 ADD Gemfile /webapp/Gemfile
 ADD Gemfile.lock /webapp/Gemfile.lock
 RUN bundle install
-CMD [ "rails", "s"]
+EXPOSE 3000
+
+# The main command to run when the container starts. Also
+# tell the Rails dev server to bind to all interfaces by
+# default.
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

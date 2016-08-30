@@ -5,10 +5,11 @@ var Schema        = mongoose.Schema;
 
 var OrderSchema   = new Schema({
     customer: String,
-    // phone_number: String,
-    order: String
-    // time_placed: String,
-    // was_delivered: Boolean
+    order: String,
+    phone: String,
+    total: String,
+    address: String,
+    isFulfilled: Boolean
 });
 
 module.exports = mongoose.model('Order', OrderSchema);

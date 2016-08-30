@@ -9,14 +9,14 @@
         <th>phone</th>
         <th>price</th>
         <th>address</th>
-        <th>status</th>
+        <th>delivered</th>
     </tr>
 <% @all_orders.each do |x| %>
     <tr>
         <td><%= x['customer'] %></td>
         <td><%= x['order'] %></td>
         <td><%= x['phone'] %></td>
-        <td><%= x['price'] %></td>
+        <td><%= x['total'] %></td>
         <td><%= x['address'] %></td>
         <td><%= x['isFulfilled'] %></td>
     </tr>

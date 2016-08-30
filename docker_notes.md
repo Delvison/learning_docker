@@ -60,4 +60,15 @@ sudo apt-get -y install python-pip
 sudo apt-get -y install python-pip
 sudo pip install docker-compose
 
+## Install mongodb on ubuntu EC2 instance
+		
+##Building and running with Docker
+        docker build -t some-unique-name .
+        docker run some-unique-name
+        
+###Docker rm all images
+        sudo docker rm --force `sudo docker ps -qa` 
+        sudo docker rmi --force `sudo docker images -qa`
+
+
 
