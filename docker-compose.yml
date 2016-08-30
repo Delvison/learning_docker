@@ -2,6 +2,8 @@ mynodeapp:
     build: ./mynodeapp
     ports:
         - "8080:3000"
+    links:
+      - "data"
     volumes:
         - ./mynodeapp:/mynodeapp
 
