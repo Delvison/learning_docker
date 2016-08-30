@@ -1,22 +1,24 @@
 <h2>New Order</h2>
 
-<%= form_for @order do |f| %>
-    <%= f.label :customer %>
-    <%= f.text_field :customer, :value => @random_name %>
-    <br />
-    <%= f.label :order%>
-    <%= f.text_field :order, :value => @random_order %>
-    <br />
-    <%= f.label :total%>
-    <%= f.text_field :total, :value => @random_total %>
-    <br />
-    <%= f.label :address%>
-    <%= f.text_field :address, :value => @random_address %>
-    <br />
-    <%= f.label :phone%>
-    <%= f.text_field :phone, :value => @random_phone %>
-    <br />
-    <%= f.hidden_field :isFulfilled, :value => @random_status %>
-    <br />
-    <%= f.submit %>
-<% end %>
+<div class="form-group">
+	<%= form_for @order, :html=> { class: 'form-horizontal' } do |f| %>
+	    <%= f.label :customer %>
+	    <%= f.text_field :customer, :value => @random_name %>
+	    <br />
+	    <%= f.label :order%>
+	    <%= f.text_field :order, :value => @random_order %>
+	    <br />
+	    <%= f.label :total%>
+	    <%= f.text_field :total, :value => @random_total %>
+	    <br />
+	    <%= f.label :address%>
+	    <%= f.text_field :address, :value => @random_address %>
+	    <br />
+	    <%= f.label :phone%>
+	    <%= f.text_field :phone, :value => @random_phone %>
+	    <br />
+	    <%= f.hidden_field :isFulfilled, :value => @random_status %>
+	    <br />
+	    <%= f.submit %>
+	<% end %>
+</div>
