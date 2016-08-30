@@ -2,5 +2,25 @@
 <p>
 <%= link_to "Place order", new_order_path %>
 <br />
-<%= @all_orders %>
+<table>
+    <tr>
+        <th>customer</th>
+        <th>order</th>
+        <th>phone</th>
+        <th>price</th>
+        <th>address</th>
+        <th>status</th>
+    </tr>
+<% @all_orders.each do |x| %>
+    <tr>
+        <td><%= x['customer'] %></td>
+        <td><%= x['order'] %></td>
+        <td><%= x['phone'] %></td>
+        <td><%= x['price'] %></td>
+        <td><%= x['address'] %></td>
+        <td><%= x['isFulfilled'] %></td>
+    </tr>
+<% end %>
+
+</table>
 </p>

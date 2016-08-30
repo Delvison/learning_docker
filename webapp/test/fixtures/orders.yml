@@ -3,7 +3,15 @@
 one:
   customer: MyString
   order: MyString
+  isFulfilled: false
+  total: MyString
+  phone: MyString
+  adress: MyString
 
 two:
   customer: MyString
   order: MyString
+  isFulfilled: false
+  total: MyString
+  phone: MyString
+  adress: MyString

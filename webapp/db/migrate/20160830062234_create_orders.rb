@@ -3,6 +3,10 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
       t.string :customer
       t.string :order
+      t.boolean :isFulfilled
+      t.string :total
+      t.string :phone
+      t.string :adress
 
       t.timestamps null: false
     end
