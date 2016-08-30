@@ -11,3 +11,11 @@ webapp:
         - "1234:3000"
     volumes:
         - ./webapp:/webapp
+
+data:
+    build: ./data
+    ports:
+        - "27017:27017"
+        - "28017:28017"
+    volumes:
+        - ./data:/data
