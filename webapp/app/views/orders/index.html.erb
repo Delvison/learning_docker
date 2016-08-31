@@ -10,17 +10,37 @@
         <th>price</th>
         <th>address</th>
         <th>delivered</th>
+        <th></th>
     </tr>
 <% @all_orders.each do |x| %>
-    <tr>
+    <% if x['isFulfilled'].to_s == 'true' %>
+    <tr class='clickable-row' style='color: #D0D0D0;' data-href='http://52.43.66.226/orders/<%= x['_id']%>'>
+    <% else %>
+    <tr class='clickable-row' data-href='http://52.43.66.226/orders/<%= x['_id']%>'>
+    <% end %>
+
+
         <td><%= x['customer'] %></td>
         <td><%= x['order'] %></td>
         <td><%= x['phone'] %></td>
         <td><%= x['total'] %></td>
         <td><%= x['address'] %></td>
         <td><%= x['isFulfilled'] %></td>
+				<% if x['isFulfilled'].to_s == 'false' %>
+					<td><a href="http://52.43.66.226:8080/api/orders/<%= x['_id'] %>"><button class="btn btn-danger">cancel</button></a></td>
+				<% else %>
+					<td></td>
+				<% end %>
     </tr>
 <% end %>
 
 </table>
 </p>
+
+<script>
+	jQuery(document).ready(function($) {
+			$(".clickable-row").click(function() {
+					window.document.location = $(this).data("href");
+			});
+	});
+</script>

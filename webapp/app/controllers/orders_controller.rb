@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
       # url = 'http://127.0.0.1:8080/api/orders'
       api_response = HTTParty.get(url)
       @all_orders = api_response.parsed_response
+      puts @all_orders
   end
 
   def new
@@ -24,13 +25,23 @@ class OrdersController < ApplicationController
       @order = params[:order]
       url = File.read("/webapp/config/api.conf",&:readline).strip
       # url = 'http://127.0.0.1:8080/api/orders'
-      api_response = HTTParty.post(url,
-        :body => @order)
+      api_response = HTTParty.post(url, :body => @order)
       puts api_response.body
     #  TODO: error handling
       redirect_to orders_path
   end
 
   def show
+      url = File.read("/webapp/config/api.conf",&:readline).strip
+      api_response = HTTParty.get(url+"/"+params[:id])
+      @this_order = api_response.parsed_response
   end
+
+	def delete
+      url = File.read("/webapp/config/api.conf",&:readline).strip + params[:order_id]
+      api_response = HTTParty.delete(url)
+      @all_orders = api_response.parsed_response
+    #  TODO: error handling
+      redirect_to orders_path
+	end
 end
