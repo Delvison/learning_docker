@@ -54,11 +54,12 @@ router.route('/orders')
   order.address = req.body.address;
   order.isFulfilled = req.body.isFulfilled;
   // console.log("   RECEIVING ORDER > " + order.customer + " : " + order.order);
-  order.save(function(err) {
+  order.save(function(err, order) {
     if (err)
       console.log(err);
     res.json({
-      message: 'Order placed!'
+      message: 'Order placed!',
+      _id: order.id
     });
   });
   // res.json({ message: 'Order placed!' });

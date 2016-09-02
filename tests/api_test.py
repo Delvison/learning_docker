@@ -1,48 +1,69 @@
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+import json
 
-url = 'http://127.0.0.1:8080/api/orders' # Set destination URL here
+url = 'http://52.43.66.226:8080/api/orders' # Set destination URL here
 PASSED = "    \033[92mPASSED\033[0m"
 FAILED = "    \033[91mFAILED\033[0m"
 
-def test_create(customer, order):
-    post_fields = {'customer': customer, 'order': order}     # Set POST fields here
+def test_create(customer, order, total, address, phone, isFulfilled = 'false'):
+    print("> testing create")
+    post_fields = {'customer': customer, 'order': order, 'total': total, 'address': address, 'phone':phone , 'isFulfilled':isFulfilled}     # Set POST fields here
     request = Request(url, urlencode(post_fields).encode())
-    json = urlopen(request).read().decode()
-    return json
+    order = json.loads(urlopen(request).read().decode())
+    if order['message'] == 'Order placed!':
+        print(PASSED)
+        return order['_id']
+    else:
+        print(FAILED)
+        return ''
 
 def test_get_all():
-    json = urlopen(url).read().decode()
-    return json
+    print("> testing getting all")
+    o = urlopen(url)
+    if o.getcode() == 200:
+        print(PASSED)
+    else:
+        print(FAILED)
 
 def test_get_one(order_id):
-    json = urlopen(url+"/"+str(order_id)).read().decode()
-    return json
+    print("> testing getting one")
+    o = urlopen(url+"/"+str(order_id))
+    if o.getcode() == 200:
+        print(PASSED)
+    else:
+        print(FAILED)
 
-def test_update(order_id, customer, order):
-    post_fields = {'customer': customer, 'order': order}
+def test_update(order_id, customer, order, total, address, phone, isFulfilled = 'false'):
+    print("> testing updating ")
+    post_fields = {'customer': customer, 'order': order, 'total': total, 'address': address, 'phone':phone , 'isFulfilled':isFulfilled}     # Set POST fields here
     request = Request(url+"/"+str(order_id), urlencode(post_fields).encode(),method='PUT')
-    json = urlopen(request).read().decode()
-    return json
+    order = json.loads(urlopen(request).read().decode())
+    if order['message'] == 'Order updated!':
+        print(PASSED)
+    else:
+        print(FAILED)
 
 def test_delete(order_id):
+    print("> testing deleting ")
     request = Request(url+"/"+str(order_id), method='DELETE')
-    json = urlopen(request).read().decode()
-    return json
+    order = json.loads(urlopen(request).read().decode())
+    if order['message'] == 'Successfully deleted':
+        print(PASSED)
+    else:
+        print(FAILED)
 
 def test_all():
-    print("> testing create")
-    print(PASSED) if test_create('delvison','cheese pizza') == '{"message":"Order placed!"}' else print(FAILED)
-    print("> testing getting all")
-    print(test_get_all())
-    print("> testing getting one")
-    print(test_get_one(345))
-    print("> testing updating ")
-    print(test_update(345, 'delvison', 'cheeseburger'))
-    print("> testing deleting ")
-    print(test_delete(345))
+    test_get_all()
+    _id = test_create('Bruce Wayne', 'tonkatsu', '$7.59', 'Wayne Manor, Gotham City', '+1 (215) 890-7600')
+    test_get_one(_id)
+    # test_update()
+    test_update(_id,'Bruce Wayne', 'tonkatsu', '$7.59', 'Wayne Manor, Gotham City', '+1 (215) 890-7600', 'true' )
+    test_delete(_id)
 
 
 
 
-test_all()
+
+# test_all()
+test_delete('57c97fd07401380e00000002')

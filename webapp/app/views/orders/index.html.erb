@@ -1,41 +1,68 @@
-<h1>Orders#index</h1>
-<p>
-<%= link_to "Place order", new_order_path %>
-<br />
-<table class="table table-hover">
-    <tr>
-        <th>customer</th>
-        <th>order</th>
-        <th>phone</th>
-        <th>price</th>
-        <th>address</th>
-        <th>delivered</th>
-        <th></th>
-    </tr>
-<% @all_orders.each do |x| %>
-    <% if x['isFulfilled'].to_s == 'true' %>
-    <tr style='color: #D0D0D0;'>
-    <% else %>
-    <tr class='clickable-row' data-href='http://52.43.66.226/orders/<%= x['_id']%>'>
-    <% end %>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    iDeliver
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+												<%= link_to "Place an order", new_order_path %>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+	<h1>Orders#index</h1>
+	<p>
+	<br />
+	<table class="table table-hover">
+			<tr>
+					<th>customer</th>
+					<th>order</th>
+					<th>phone</th>
+					<th>price</th>
+					<th>address</th>
+					<th>delivered</th>
+					<th></th>
+			</tr>
+	<% @all_orders.each do |x| %>
+			<% if x['isFulfilled'].to_s == 'true' %>
+			<tr style='color: #D0D0D0;'>
+			<% else %>
+			<tr class='clickable-row' data-href='http://52.43.66.226/orders/<%= x['_id']%>'>
+			<% end %>
 
 
-        <td><%= x['customer'] %></td>
-        <td><%= x['order'] %></td>
-        <td><%= x['phone'] %></td>
-        <td><%= x['total'] %></td>
-        <td><%= x['address'] %></td>
-        <td><%= x['isFulfilled'] %></td>
-				<% if x['isFulfilled'].to_s == 'false' %>
-					<td><a href="http://52.43.66.226/orders/<%= x['_id'] %>/delete"><button class="btn btn-danger">cancel</button></a></td>
-				<% else %>
-					<td></td>
-				<% end %>
-    </tr>
-<% end %>
+					<td><%= x['customer'] %></td>
+					<td><%= x['order'] %></td>
+					<td><%= x['phone'] %></td>
+					<td><%= x['total'] %></td>
+					<td><%= x['address'] %></td>
+					<td><%= x['isFulfilled'] %></td>
+					<% if x['isFulfilled'].to_s == 'false' %>
+						<td><a href="http://52.43.66.226/orders/<%= x['_id'] %>/delete"><button class="btn btn-danger">cancel</button></a></td>
+					<% else %>
+						<td></td>
+					<% end %>
+			</tr>
+	<% end %>
 
-</table>
-</p>
+	</table>
+	</p>
 
 <script>
 	jQuery(document).ready(function($) {
