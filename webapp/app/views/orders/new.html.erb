@@ -1,5 +1,6 @@
 <h2>New Order</h2>
 
+<%= link_to "< All orders", orders_path %>
 <div class="form-group">
 	<%= form_for @order, :html=> { class: 'form-horizontal' } do |f| %>
 	    <%= f.label :customer %>

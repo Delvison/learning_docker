@@ -1,3 +1,56 @@
 <h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
-<h1><%= @this_order['customer']%></h1>
+
+<%= link_to "< All orders", orders_path %>
+<!-- <div> -->
+<!-- 	<form action="<%= edit_order_path %>"> -->
+<!-- 		<div class="form&#45;group"> -->
+<!-- 			<label for="customer">customer</label> -->
+<!-- 			<input id="customer" value="<%=@this_order['customer']%>"></input> -->
+<!-- 		</div> -->
+<!-- 		<div class="form&#45;group"> -->
+<!-- 			<label for="order">order</label> -->
+<!-- 			<input id="order" value="<%=@this_order['order']%>"></input> -->
+<!-- 		</div> -->
+<!-- 		<div class="form&#45;group"> -->
+<!-- 			<label for="total">total</label> -->
+<!-- 			<input id="total" value="<%=@this_order['total']%>"></input> -->
+<!-- 		</div> -->
+<!-- 		<div class="form&#45;group"> -->
+<!-- 			<label for="address">address</label> -->
+<!-- 			<input id="address" value="<%=@this_order['address']%>"></input> -->
+<!-- 		</div> -->
+<!-- 		<div class="form&#45;group"> -->
+<!-- 			<label for="phone">phone</label> -->
+<!-- 			<input id="phone" value="<%=@this_order['phone']%>"></input> -->
+<!-- 		</div> -->
+<!-- 		<div class="form&#45;group"> -->
+<!-- 			<label for="isFulfilled">delivered?</label> -->
+<!-- 			<input id="isFulfilled" value="<%=@this_order['isFulfilled']%>"></input> -->
+<!-- 		</div> -->
+<!-- 		<button type="submit">Update order</button> -->
+<!-- 	</form> -->
+<!--  -->
+<!-- </div> -->
+<div class="form-group">
+	<%= form_for (@order), :html=> { class: 'form-horizontal' }, :url => {:controller => "orders", :action => "edit"}, :method => "GET" do |f| %>
+	    <%= f.label :customer %>
+	    <%= f.text_field :customer, :value => @this_order['customer'] %>
+	    <br />
+	    <%= f.label :order%>
+	    <%= f.text_field :order, :value => @this_order['order'] %>
+	    <br />
+	    <%= f.label :total%>
+	    <%= f.text_field :total, :value => @this_order['total'] %>
+	    <br />
+	    <%= f.label :address%>
+	    <%= f.text_field :address, :value => @this_order['address'] %>
+	    <br />
+	    <%= f.label :phone%>
+	    <%= f.text_field :phone, :value => @this_order['phone'] %>
+	    <br />
+	    <%= f.label :isFulfilled%>
+	    <%= f.text_field :isFulfilled, :value => @this_order['isFulfilled'] %>
+	    <br />
+	    <%= f.submit %>
+	<% end %>
+</div>
